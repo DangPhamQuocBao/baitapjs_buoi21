@@ -265,9 +265,9 @@
 								</div>
 								<select class="form-control" id="chucvu">
 									<option>Chọn chức vụ</option>
-									<option>Sếp</option>
-									<option>Trưởng phòng</option>
-									<option>Nhân viên</option>
+									<option id="sep">Sếp</option>
+									<option id="tP">Trưởng phòng</option>
+									<option id="nV">Nhân viên</option>
 								</select>
 							</div>
 
@@ -290,7 +290,8 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer" id="modal-footer">
-					<button id="btnThemNV" type="button" class="btn btn-success">Thêm người dùng</button>
+					<button id="btnThemNV" type="button" class="btn btn-success">Thêm người
+						dùng</button>
 					<button id="btnCapNhat" type="button" class="btn btn-success">Cập nhật</button>
 					<button id="btnDong" type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 				</div>
@@ -326,7 +327,11 @@
 			});
 		});
 	</script>
-	<script src="index.js"></script>
+	<script src="./model/nhanvien.js"></script>
+	<script src="./controller/helper.js"></script>
+	<script src="./controller/validation.js"></script>
+	<script src="./controller/index.js"></script>
+
 </body>
 
 </html>
