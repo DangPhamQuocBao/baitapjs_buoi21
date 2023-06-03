@@ -78,3 +78,4 @@ function getStorage() {
     arrNhanVien = arrNhanVienLocal;
   }
 }
+console.log();

@@ -22,6 +22,8 @@ function NhanVien(
       tongLuong = this.luongCoBan * 3;
     } else if ((chucVu = "tP")) {
       tongLuong = this.luongCoBan * 2;
+    } else if ((chucVu = "nV")) {
+      tongLuong = this.luongCoBan;
     }
     return tongLuong;
   };
