@@ -59,7 +59,7 @@
 
 //
 
-var arrSinhVien = [];
+var arrNhanVien = [];
 
 getStorage();
 
@@ -86,17 +86,12 @@ function renderGiaoDien() {
    <td>${nhanVien.chucVu}</td>
    <td>${tinhTien}</td>
    <td>${xepLoai}</td>
-   <td><em class="fa fa-cog"></em></t  d>
-              <td>
-                <button onclick="xoaSinhVien('${nhanVien.taiKhoan}')" class="btn btn-danger">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-               
-              </td>
+   <td><em class="fa fa-cog"></em></td>
+          
             </tr>
   `;
   }
-  document.getElementById("tbodySinhVien").innerHTML = content;
+  document.getElementById("tableDanhSach").innerHTML = content;
 }
 
 function themNhanVien() {
@@ -151,3 +146,10 @@ function capNhatThongTinNhanVien() {
 }
 
 document.getElementById("btnCapNhat").onclick = capNhatThongTinNhanVien;
+
+// {/* <td>
+// <button onclick="xoaSinhVien('${nhanVien.taiKhoan}')" class="btn btn-danger">
+//   <i class="fa-solid fa-trash"></i>
+// </button>
+
+// </td> */}

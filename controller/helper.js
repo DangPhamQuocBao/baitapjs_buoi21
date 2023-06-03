@@ -44,10 +44,10 @@ function layGiaTriInput() {
     kiemTraRong(_hoTen, "tbTen") &
     kiemTraRong(_email, "tbEmail") &
     kiemTraRong(_matKhau, "tbMatKhau") &
-    kiemTraRong(_ngaySinh, "tbNgay") &
-    kiemTraRong(_khoaHoc, "tbLuongCB") &
-    kiemTraRong(_diemToan, "tbChucVu") &
-    kiemTraRong(_diemLy, "tbGiolam");
+    kiemTraRong(_ngayLam, "tbNgay") &
+    kiemTraRong(_luongCoBan, "tbLuongCB") &
+    kiemTraRong(_chucVu, "tbChucVu") &
+    kiemTraRong(_gioLam, "tbGiolam");
 
   valid &= kiemTraEmail(_email, "tbEmail");
 
