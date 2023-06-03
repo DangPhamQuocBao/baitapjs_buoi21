@@ -35,7 +35,7 @@ function layGiaTriInput() {
   var _matKhau = document.getElementById("password").value;
   var _ngayLam = document.getElementById("datepicker").value;
   var _luongCoBan = document.getElementById("luongCB").value;
-  var _chucVu = document.getElementById("chucvu").value * 1;
+  var _chucVu = document.getElementById("chucvu").value;
   var _gioLam = document.getElementById("gioLam").value * 1;
 
   var valid = true;
