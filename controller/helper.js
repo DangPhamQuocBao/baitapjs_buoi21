@@ -1,6 +1,6 @@
 function ganGiaTriChoInput(
   taiKhoan,
-  hoTen,
+  tenNhanVien,
   email,
   matKhau,
   ngayLam,
@@ -9,13 +9,61 @@ function ganGiaTriChoInput(
   gioLam
 ) {
   document.getElementById("tknv").value = taiKhoan;
-  document.getElementById("name").value = hoTen;
+  document.getElementById("name").value = tenNhanVien;
   document.getElementById("email").value = email;
   document.getElementById("password").value = matKhau;
   document.getElementById("datepicker").value = ngayLam;
   document.getElementById("luongCB").value = luongCoBan;
   document.getElementById("chucvu").value = chucVu;
   document.getElementById("gioLam").value = gioLam;
+}
+
+function layGiaTriInput() {
+  var taiKhoan = document.getElementById("tknv").value;
+  console.log(`Số lượng ký tự ô tài khoản: ${taiKhoan.length}`);
+  var tenNhanVien = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var matKhau = document.getElementById("password").value;
+  var ngayLam = document.getElementById("datepicker").value;
+  var luongCoBan = document.getElementById("luongCB").value;
+  var chucVu = document.getElementById("chucvu").value;
+  var gioLam = document.getElementById("gioLam").value;
+
+  var valid = true;
+  valid =
+    kiemTraRong(taiKhoan, "tbTKNV") &
+    kiemTraRong(tenNhanVien, "tbTen") &
+    kiemTraRong(email, "tbEmail") &
+    kiemTraRong(matKhau, "tbMatKhau") &
+    kiemTraRong(ngayLam, "tbNgay") &
+    kiemTraRong(luongCoBan, "tbLuongCB") &
+    kiemTraRong(chucVu, "tbChucVu") &
+    kiemTraRong(gioLam, "tbGiolam");
+
+  valid &= kiemTraTaiKhoan(taiKhoan, "tbTKNV");
+  valid &= kiemTraTenNV(tenNhanVien, "tbTen");
+  valid &= kiemTraEmail(email, "tbEmail");
+  valid &= kiemTraPass(matKhau, "tbMatKhau");
+  valid &= kiemTraDate(ngayLam, "tbNgay");
+  valid &= kiemTraLuong(luongCoBan, "tbLuongCB");
+  valid &= kiemTraChucVu(chucVu, "tbChucVu");
+  valid &= kiemTraGiolam(gioLam, "tbGiolam");
+
+  if (!valid) {
+    return;
+  }
+
+  var nhanVien = new NhanVien(
+    taiKhoan,
+    tenNhanVien,
+    email,
+    matKhau,
+    ngayLam,
+    luongCoBan,
+    chucVu,
+    gioLam
+  );
+  return nhanVien;
 }
 
 function timViTriNhanVien(taiKhoan) {
@@ -27,55 +75,3 @@ function timViTriNhanVien(taiKhoan) {
   });
   return viTri;
 }
-
-function layGiaTriInput() {
-  var _taiKhoan = document.getElementById("tknv").value;
-  var _hoTen = document.getElementById("name").value;
-  var _email = document.getElementById("email").value;
-  var _matKhau = document.getElementById("password").value;
-  var _ngayLam = document.getElementById("datepicker").value;
-  var _luongCoBan = document.getElementById("luongCB").value;
-  var _chucVu = document.getElementById("chucvu").value;
-  var _gioLam = document.getElementById("gioLam").value * 1;
-
-  var valid = true;
-  valid =
-    kiemTraRong(_taiKhoan, "tbTKNV") &
-    kiemTraRong(_hoTen, "tbTen") &
-    kiemTraRong(_email, "tbEmail") &
-    kiemTraRong(_matKhau, "tbMatKhau") &
-    kiemTraRong(_ngayLam, "tbNgay") &
-    kiemTraRong(_luongCoBan, "tbLuongCB") &
-    kiemTraRong(_chucVu, "tbChucVu") &
-    kiemTraRong(_gioLam, "tbGiolam");
-
-  valid &= kiemTraEmail(_email, "tbEmail");
-
-  if (!valid) {
-    return;
-  }
-
-  var nhanVien = new NhanVien(
-    _taiKhoan,
-    _hoTen,
-    _email,
-    _matKhau,
-    _ngayLam,
-    _luongCoBan,
-    _chucVu,
-    _gioLam
-  );
-  return nhanVien;
-}
-
-function saveStorage(arrNhanVien) {
-  localStorage.setItem("arrNhanVien", JSON.stringify(arrNhanVien));
-}
-
-function getStorage() {
-  var arrNhanVienLocal = JSON.parse(localStorage.getItem("arrNhanVien"));
-  if (arrNhanVienLocal != null) {
-    arrNhanVien = arrNhanVienLocal;
-  }
-}
-console.log();

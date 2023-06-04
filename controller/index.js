@@ -1,130 +1,64 @@
-// // console.log("asd");
-// // var nhanVien = new NhanVien();
-
-// var arrNhanVien = [];
-// //render
-// function render() {
-//   var content = "";
-
-//   for (var i = 0; i < arrNhanVien.length; i++) {
-//     var nhanVien = arrNhanVien[i];
-//     var phanLoai = nhanVien.xepLoai();
-//     var tinhLuong = nhanVien.tinhTongLuong();
-//     content += `
-//   <tr>
-//   <td>${nhanVien.taiKhoan}</td>
-// <td>${nhanVien.hoTen}</td>
-// <td>${nhanVien.email}</td>
-// <td>${nhanVien.ngayLam}</td>
-// <td>${nhanVien.chucVu}</td>
-// <td>${tinhLuong}</td>
-// <td>${phanLoai}</td>
-// <td><em class="fa fa-cog"></em></t  d>
-// </tr>
-// `;
-//   }
-
-//   document.getElementById("tableDanhSach").innerHTML = content;
-// }
-// //them nhan vien
-// function themNhanVien() {
-//   var _taiKhoan = document.getElementById("tknv").value;
-//   var _hoTen = document.getElementById("name").value;
-//   var _email = document.getElementById("email").value;
-//   var _matKhau = document.getElementById("password").value;
-//   var _ngayLam = document.getElementById("datepicker").value;
-//   var _luongCoBan = document.getElementById("luongCB").value * 1;
-//   var _chucVu = document.getElementById("chucvu").value;
-//   var _gioLam = document.getElementById("tbGiolam").value * 1;
-//   var nhanVien = new NhanVien(
-//     _taiKhoan,
-//     _hoTen,
-//     _email,
-//     _matKhau,
-//     _ngayLam,
-//     _luongCoBan,
-//     _chucVu,
-//     _gioLam
-//   );
-//   arrNhanVien.push(nhanVien);
-//   render();
-// }
-// document.getElementById("btnThemNV").onclick = themNhanVien;
-// {
-// }
-
-//
-
-//
-
-//
-
-var arrNhanVien = [];
-
-getStorage();
-
-renderGiaoDien();
+arrNhanVien = [];
 
 function renderGiaoDien() {
   var content = "";
 
-  for (var i = 0; i < arrNhanVien.length; i++) {
+  for (i = 0; i < arrNhanVien.length; i++) {
     var nhanVien = new NhanVien();
-
     var nhanVienItem = arrNhanVien[i];
-
     Object.assign(nhanVien, nhanVienItem);
-
-    var tinhTien = nhanVien.tinhTongLuong();
+    var tinhLuong = nhanVien.tongLuong();
     var xepLoai = nhanVien.xepLoai();
     content += `
-  <tr>
-    <td>${nhanVien.taiKhoan}</td>
-   <td>${nhanVien.hoTen}</td>
-  <td>${nhanVien.email}</td>
-  <td>${nhanVien.ngayLam}</td>
-   <td>${nhanVien.chucVu}</td>
-   <td>${tinhTien}</td>
-   <td>${xepLoai}</td>
-   <td><em class="fa fa-cog"></em></td>
-          
-            </tr>
-  `;
+        <tr>
+        <td>${nhanVien.taiKhoan}</td>
+        <td>${nhanVien.tenNhanVien}</td>
+        <td>${nhanVien.email}</td>
+        <td>${nhanVien.ngayLam}</td>
+        <td>${nhanVien.chucVu}</td>
+        <td>${tinhLuong}</td>
+        <td>${xepLoai}</td>
+        <td>
+          <button onclick="editNhanVien('${nhanVien.taiKhoan}')" class="btn btn-warning" data-toggle="modal"
+      data-target="#myModal">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+          <button onclick="xoaNhanVien('${nhanVien.taiKhoan}')" class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+        </tr>
+        `;
   }
+
   document.getElementById("tableDanhSach").innerHTML = content;
 }
 
 function themNhanVien() {
   var nhanVien = layGiaTriInput();
-
   if (nhanVien) {
     arrNhanVien.push(nhanVien);
-    saveStorage(arrNhanVien);
 
     renderGiaoDien();
 
-    ganGiaTriChoInput("", "", "", "", "", "", "", "");
+    // ganGiaTriChoInput("", "", "", "", "", "", "", "");
   }
 }
 
-document.getElementById("btnThemNV").onclick = themNhanVien;
-
 function xoaNhanVien(taiKhoan) {
-  var index = timViTriSinhVien(taiKhoan);
+  var index = timViTriNhanVien(taiKhoan);
   if (index != -1) {
     arrNhanVien.splice(index, 1);
-    saveStorage(arrNhanVien);
     renderGiaoDien();
   }
 }
 
 function editNhanVien(taiKhoan) {
-  document.getElementById("btnCapNhat").style.display = "inline-block";
   var index = timViTriNhanVien(taiKhoan);
   var nhanVien = arrNhanVien[index];
   ganGiaTriChoInput(
     nhanVien.taiKhoan,
-    nhanVien.hoTen,
+    nhanVien.tenNhanVien,
     nhanVien.email,
     nhanVien.matKhau,
     nhanVien.ngayLam,
@@ -132,24 +66,60 @@ function editNhanVien(taiKhoan) {
     nhanVien.chucVu,
     nhanVien.gioLam
   );
-  document.getElementById("tknv").readOnly = true;
 }
 
-function capNhatThongTinNhanVien() {
-  var nhanVienDaChinhSua = layGiaTriInput();
-
-  var index = timViTriNhanVien(nhanVienDaChinhSua.taiKhoan);
-
-  arrNhanVien[index] = nhanVienDaChinhSua;
-  saveStorage(arrNhanVien);
+function capNhatThongTin() {
+  var nhanVienDaSua = layGiaTriInput();
+  console.log(nhanVienDaSua);
+  var index = timViTriNhanVien(nhanVienDaSua.taiKhoan);
+  arrNhanVien[index] = nhanVienDaSua;
   renderGiaoDien();
 }
 
-document.getElementById("btnCapNhat").onclick = capNhatThongTinNhanVien;
+function kiemTraNV() {
+  console.log(arrNhanVien);
+  var obj = { arr: arrNhanVien };
+  var txtSearch = document.getElementById("searchName").value;
+  var filterArray = obj.arr.filter(function (e) {
+    if (txtSearch == "Nhân viên xuất sắc") {
+      return e.gioLam >= 192;
+    } else if (txtSearch == "Nhân viên giỏi") {
+      return e.gioLam >= 176 && e.gioLam < 192;
+    } else if (txtSearch == "Nhân viên khá") {
+      return e.gioLam >= 160 && e.gioLam < 176;
+    } else if (txtSearch == "Nhân viên trung bình") {
+      return e.gioLam < 160;
+    }
+  });
+  console.log(filterArray);
 
-// {/* <td>
-// <button onclick="xoaSinhVien('${nhanVien.taiKhoan}')" class="btn btn-danger">
-//   <i class="fa-solid fa-trash"></i>
-// </button>
+  var content = "";
+  for (i = 0; i < filterArray.length; i++) {
+    var nhanVien = filterArray[i];
+    console.log(nhanVien);
+    var tinhLuong = nhanVien.tongLuong();
+    var xepLoai = nhanVien.xepLoai();
+    content += `
+        <tr>
+        <td>${nhanVien.taiKhoan}</td>
+        <td>${nhanVien.tenNhanVien}</td>
+        <td>${nhanVien.email}</td>
+        <td>${nhanVien.ngayLam}</td>
+        <td>${nhanVien.chucVu}</td>
+        <td>${tinhLuong}</td>
+        <td>${xepLoai}</td>
+        <td>
+          <button onclick="suaNhanVien('${nhanVien.taiKhoan}')" class="btn btn-warning" data-toggle="modal"
+      data-target="#myModal">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+          <button onclick="xoaNhanVien('${nhanVien.taiKhoan}')" class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+        </tr>
+        `;
+  }
 
-// </td> */}
+  document.getElementById("tableDanhSach").innerHTML = content;
+}

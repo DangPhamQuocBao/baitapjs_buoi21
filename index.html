@@ -16,7 +16,12 @@
 	<link rel="stylesheet" href="css/jquery-ui.min.css">
 
 	<!-- Animate -->
-	<!-- <link rel="stylesheet" href="css/animate.css"> -->
+	<link rel="stylesheet" href="css/animate.css">
+
+	<!-- FontAwesome 6.2.0 CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+		integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- My CSS -->
 	<link rel="stylesheet" href="css/modal.css">
@@ -127,7 +132,8 @@
 									<input type="text" class="form-control" placeholder="Loại nhân viên"
 										id="searchName">
 									<div class="input-group-prepend">
-										<span class="input-group-text" id="btnTimNV"><i class="fa fa-search"></i></span>
+										<span class="input-group-text" id="btnTimNV" onclick="kiemTraNV();"><i
+												class="fa fa-search"></i></span>
 									</div>
 								</div>
 							</div>
@@ -178,14 +184,6 @@
 				<header class="head-form mb-0">
 					<h2 id="header-title">Log In</h2>
 				</header>
-
-				<!-- Modal Header -->
-				<!-- 	<div class="modal-header">
-					<h4 class="modal-title" id="modal-title">Modal Heading</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div> -->
-
-				<!-- Modal body -->
 				<div class="modal-body">
 
 					<form role="form">
@@ -196,7 +194,7 @@
 									<span class="input-group-text"><i class="fa fa-user"></i></span>
 								</div>
 								<input type="text" name="tk" id="tknv" class="form-control input-sm"
-									placeholder="Tài khoản">
+									placeholder="Tài khoản" value="nguyen">
 							</div>
 
 							<span class="sp-thongbao" id="tbTKNV"></span>
@@ -208,7 +206,7 @@
 									<span class="input-group-text"><i class="fa fa-address-book"></i></span>
 								</div>
 								<input type="name" name="name" id="name" class="form-control input-sm"
-									placeholder="Họ và tên">
+									placeholder="Họ và tên" value="Nguyen Van A">
 							</div>
 							<span class="sp-thongbao" id="tbTen"></span>
 						</div>
@@ -219,7 +217,7 @@
 									<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 								</div>
 								<input type="email" name="email" id="email" class="form-control input-sm"
-									placeholder="Email">
+									placeholder="Email" value="nguyenvana@gmail.com">
 							</div>
 
 							<span class="sp-thongbao" id="tbEmail"></span>
@@ -231,7 +229,7 @@
 									<span class="input-group-text"><i class="fa fa-key"></i></span>
 								</div>
 								<input type="password" name="password" id="password" class="form-control input-sm"
-									placeholder="Mật khẩu">
+									placeholder="Mật khẩu" value="Pass123-">
 							</div>
 							<span class="sp-thongbao" id="tbMatKhau"></span>
 						</div>
@@ -242,7 +240,7 @@
 									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 								</div>
 								<input type="text" name="ngaylam" id="datepicker" class="form-control"
-									placeholder="Ngày làm">
+									placeholder="Ngày làm" value="09/01/2023">
 							</div>
 
 							<span class="sp-thongbao" id="tbNgay"></span>
@@ -253,8 +251,8 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fa fa-money" aria-hidden="true"></i></span>
 								</div>
-								<input type="text" name="luongCB" id="luongCB" class="form-control input-sm"
-									placeholder="Lương cơ bản">
+								<input type="number" name="luongCB" id="luongCB" class="form-control input-sm"
+									placeholder="Lương cơ bản" value="1000000">
 							</div>
 							<span class="sp-thongbao" id="tbLuongCB"></span>
 						</div>
@@ -265,9 +263,9 @@
 								</div>
 								<select class="form-control" id="chucvu">
 									<option>Chọn chức vụ</option>
-									<option id="sep">Sếp</option>
-									<option id="tP">Trưởng phòng</option>
-									<option id="nV">Nhân viên</option>
+									<option>Sếp</option>
+									<option>Trưởng phòng</option>
+									<option>Nhân viên</option>
 								</select>
 							</div>
 
@@ -280,7 +278,7 @@
 											aria-hidden="true"></i></span>
 								</div>
 								<input type="text" name="gioLam" id="gioLam" class="form-control input-sm"
-									placeholder="Giờ làm">
+									placeholder="Giờ làm" value="180">
 							</div>
 							<span class="sp-thongbao" id="tbGiolam"></span>
 						</div>
@@ -290,9 +288,10 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer" id="modal-footer">
-					<button id="btnThemNV" type="button" class="btn btn-success">Thêm người
+					<button id="btnThemNV" type="button" class="btn btn-success" onclick="themNhanVien();">Thêm người
 						dùng</button>
-					<button id="btnCapNhat" type="button" class="btn btn-success">Cập nhật</button>
+					<button id="btnCapNhat" onclick="capNhatThongTin();" type="button" class="btn btn-success">Cập
+						nhật</button>
 					<button id="btnDong" type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 				</div>
 
@@ -306,18 +305,15 @@
 	<script type="text/javascript" src="js/popper.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-	<!-- Date Picker -->
-	<!-- <script src="js/jquery-ui.min.js"></script> -->
+
 	<script src="./js/jquery-ui.js"></script>
 	<script src="js/datepicker.js"></script>
+	<script src="./model/nhanvien.js"></script>
+	<script src="./controller/helper.js"></script>
+	<script src="./controller/index.js"></script>
+	<script src="./controller/validation.js"></script>
 
-	<!-- Wow -->
-	<!-- <script src="js/wow.min.js"></script>	
-	<script>
-		new WOW().init();
-	</script>  -->
 
-	<!-- <script src="js/modal.js"></script> -->
 
 
 	<script type="text/javascript">
@@ -327,11 +323,6 @@
 			});
 		});
 	</script>
-	<script src="./model/nhanvien.js"></script>
-	<script src="./controller/helper.js"></script>
-	<script src="./controller/validation.js"></script>
-	<script src="./controller/index.js"></script>
-
 </body>
 
 </html>

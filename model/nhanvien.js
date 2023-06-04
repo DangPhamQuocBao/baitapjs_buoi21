@@ -1,41 +1,44 @@
 function NhanVien(
-  _taiKhoan,
-  _hoTen,
-  _email,
-  _matKhau,
-  _ngayLam,
-  _luongCoBan,
-  _chucVu,
-  _gioLam
+  taiKhoan,
+  tenNhanVien,
+  email,
+  matKhau,
+  ngayLam,
+  luongCoBan,
+  chucVu,
+  gioLam,
+  loaiNhanVien
 ) {
-  this.taiKhoan = _taiKhoan;
-  this.hoTen = _hoTen;
-  this.email = _email;
-  this.matKhau = _matKhau;
-  this.ngayLam = _ngayLam;
-  this.luongCoBan = _luongCoBan;
-  this.chucVu = _chucVu;
-  this.gioLam = _gioLam;
-  this.tinhTongLuong = function () {
-    var tongLuong = this.luongCoBan;
-    if ((chucVu = "sep")) {
-      tongLuong = this.luongCoBan * 3;
-    } else if ((chucVu = "tP")) {
-      tongLuong = this.luongCoBan * 2;
-    } else if ((chucVu = "nV")) {
-      tongLuong = this.luongCoBan;
+  this.taiKhoan = taiKhoan;
+  this.tenNhanVien = tenNhanVien;
+  this.email = email;
+  this.matKhau = matKhau;
+  this.ngayLam = ngayLam;
+  this.luongCoBan = luongCoBan;
+  this.chucVu = chucVu;
+  this.gioLam = gioLam;
+  this.loaiNhanVien = loaiNhanVien;
+
+  this.tongLuong = function () {
+    if (this.chucVu == "Sếp") {
+      return this.luongCoBan * 3;
+    } else if (this.chucVu == "Trưởng phòng") {
+      return this.luongCoBan * 2;
+    } else if (this.chucVu == "Nhân viên") {
+      return this.luongCoBan * 1;
     }
-    return tongLuong;
   };
   this.xepLoai = function () {
-    if (this.gioLam >= 192) {
-      return "nhan vien xuat sac";
-    } else if (this.gioLam < 192 && this.gioLam >= 176) {
-      return "nhan vien gioi";
-    } else if (this.gioLam < 176 && this.gioLam >= 160) {
-      return "nhan vien kha";
-    } else if (this.gioLam < 160) {
-      return "nhan vien trung binh";
+    var gioLam = 8 * 30;
+
+    if (this.gioLam < 160) {
+      return "Nhân viên trung bình";
+    } else if (this.gioLam >= 160 && this.gioLam < 176) {
+      return "Nhân viên khá";
+    } else if (this.gioLam >= 176 && this.gioLam < 192) {
+      return "Nhân viên giỏi";
+    } else if (this.gioLam >= 192) {
+      return "Nhân viên xuất sắc";
     }
   };
 }
