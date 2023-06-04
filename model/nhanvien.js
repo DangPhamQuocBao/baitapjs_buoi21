@@ -19,18 +19,8 @@ function NhanVien(
   this.gioLam = gioLam;
   this.loaiNhanVien = loaiNhanVien;
 
-  this.tongLuong = function () {
-    if (this.chucVu == "Sếp") {
-      return this.luongCoBan * 3;
-    } else if (this.chucVu == "Trưởng phòng") {
-      return this.luongCoBan * 2;
-    } else if (this.chucVu == "Nhân viên") {
-      return this.luongCoBan * 1;
-    }
-  };
   this.xepLoai = function () {
     var gioLam = 8 * 30;
-
     if (this.gioLam < 160) {
       return "Nhân viên trung bình";
     } else if (this.gioLam >= 160 && this.gioLam < 176) {
@@ -39,6 +29,16 @@ function NhanVien(
       return "Nhân viên giỏi";
     } else if (this.gioLam >= 192) {
       return "Nhân viên xuất sắc";
+    }
+  };
+
+  this.tongLuong = function () {
+    if (this.chucVu == "Sếp") {
+      return this.luongCoBan * 3;
+    } else if (this.chucVu == "Trưởng phòng") {
+      return this.luongCoBan * 2;
+    } else if (this.chucVu == "Nhân viên") {
+      return this.luongCoBan * 1;
     }
   };
 }

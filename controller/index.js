@@ -38,10 +38,7 @@ function themNhanVien() {
   var nhanVien = layGiaTriInput();
   if (nhanVien) {
     arrNhanVien.push(nhanVien);
-
     renderGiaoDien();
-
-    // ganGiaTriChoInput("", "", "", "", "", "", "", "");
   }
 }
 
@@ -70,14 +67,12 @@ function editNhanVien(taiKhoan) {
 
 function capNhatThongTin() {
   var nhanVienDaSua = layGiaTriInput();
-  console.log(nhanVienDaSua);
   var index = timViTriNhanVien(nhanVienDaSua.taiKhoan);
   arrNhanVien[index] = nhanVienDaSua;
   renderGiaoDien();
 }
 
 function kiemTraNV() {
-  console.log(arrNhanVien);
   var obj = { arr: arrNhanVien };
   var txtSearch = document.getElementById("searchName").value;
   var filterArray = obj.arr.filter(function (e) {
@@ -91,12 +86,10 @@ function kiemTraNV() {
       return e.gioLam < 160;
     }
   });
-  console.log(filterArray);
 
   var content = "";
   for (i = 0; i < filterArray.length; i++) {
     var nhanVien = filterArray[i];
-    console.log(nhanVien);
     var tinhLuong = nhanVien.tongLuong();
     var xepLoai = nhanVien.xepLoai();
     content += `
@@ -120,6 +113,5 @@ function kiemTraNV() {
         </tr>
         `;
   }
-
   document.getElementById("tableDanhSach").innerHTML = content;
 }

@@ -26,6 +26,22 @@ function kiemTraTaiKhoan(checkInput, idThongBao) {
   }
 }
 
+function kiemTraTenNV(checkInput, idThongBao) {
+  var letters = /^([a-zA-Z ]){1,30}$/;
+  var hopLe = letters.test(checkInput);
+  console.log(`tenNV: ${hopLe}`);
+  if (hopLe) {
+    document.getElementById(idThongBao).innerHTML = "";
+    document.getElementById(idThongBao).style.display = "none";
+    return true;
+  } else {
+    document.getElementById(idThongBao).innerHTML =
+      "Xin nhập vào đúng định dạng VD: vo chi cong";
+    document.getElementById(idThongBao).style.display = "block";
+    return false;
+  }
+}
+
 function kiemTraEmail(checkInput, idThongBao) {
   var regexEmail =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -37,23 +53,7 @@ function kiemTraEmail(checkInput, idThongBao) {
     return true;
   } else {
     document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng text@text.text";
-    document.getElementById(idThongBao).style.display = "block";
-    return false;
-  }
-}
-
-function kiemTraTenNV(checkInput, idThongBao) {
-  var letters = /^([a-zA-Z ]){1,30}$/;
-  var hopLe = letters.test(checkInput);
-  console.log(`tenNV: ${hopLe}`);
-  if (hopLe) {
-    document.getElementById(idThongBao).innerHTML = "";
-    document.getElementById(idThongBao).style.display = "none";
-    return true;
-  } else {
-    document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng";
+      "Xin nhập vào đúng định dạng VD: example@gmail.com";
     document.getElementById(idThongBao).style.display = "block";
     return false;
   }
@@ -69,7 +69,7 @@ function kiemTraPass(checkInput, idThongBao) {
     return true;
   } else {
     document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng";
+      "Xin nhập vào đúng định dạng mật khẩu gồm có 8 ký tự bao gồm chữ thường, chữ hoa , số và ký tự đặc biệt";
     document.getElementById(idThongBao).style.display = "block";
     return false;
   }
@@ -85,7 +85,7 @@ function kiemTraDate(checkInput, idThongBao) {
     return true;
   } else {
     document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng";
+      "Xin nhập vào đúng định dạng mm/dd/yyyy";
     document.getElementById(idThongBao).style.display = "block";
     return false;
   }
@@ -101,7 +101,7 @@ function kiemTraLuong(checkInput, idThongBao) {
   } else {
     console.log(`luong: false`);
     document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng";
+      "Xin nhập vào đúng định dạng , nhập số lương cơ bản từ 1000000 đến 20000000";
     document.getElementById(idThongBao).style.display = "block";
     return false;
   }
@@ -119,8 +119,7 @@ function kiemTraChucVu(checkInput, idThongBao) {
     return true;
   } else {
     console.log(`chuc vu: false`);
-    document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng";
+    document.getElementById(idThongBao).innerHTML = "Vui lòng chọn chức vụ";
     document.getElementById(idThongBao).style.display = "block";
     return false;
   }
@@ -135,7 +134,7 @@ function kiemTraGiolam(checkInput, idThongBao) {
   } else {
     console.log(`gio lam: false`);
     document.getElementById(idThongBao).innerHTML =
-      "Xin nhập vào đúng định dạng";
+      "Xin nhập vào đúng định dạng , nhập vào giờ làm từ 80 đến 200";
     document.getElementById(idThongBao).style.display = "block";
     return false;
   }
